@@ -49,8 +49,11 @@ def menu():
             dictionary_of_lists[new_list] = []
         elif user_choice == 4:
             which_list = raw_input("what list would you like to add items to?")
-            which_item = raw_input("what item would you like to add?")
+            which_item = raw_input("what items would you like to add?")
+            if "," in which_item:
+                str_parser(which_item)
             add_to_list(which_list, which_item)
+
         elif user_choice == 5:
             pass
         elif user_choice == 6:
@@ -62,6 +65,11 @@ def add_to_list(list_key, item):
     this_list = dictionary_of_lists[list_key]
     this_list.append(item)
     return this_list
+
+def str_parser(item):
+    item.split(", ")
+    return item
+
 
 if __name__ == '__main__':
     main()
