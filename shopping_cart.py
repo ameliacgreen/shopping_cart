@@ -19,7 +19,10 @@ functions:
 ''' 
 dictionary_of_lists = {}
 
+
 def main():
+    global dictionary_of_lists
+    dictionary_of_lists = shopping_list_read() 
     print"Welcome! This program allows you to create various lists. Please choose from the following options: "
     menu()
 
@@ -64,11 +67,26 @@ def menu():
 def add_to_list(list_key, item):
     this_list = dictionary_of_lists[list_key]
     this_list.append(item)
+    shopping_list_write()
+
     return this_list
 
 def str_parser(item):
     item.split(", ")
     return item
+
+def shopping_list_write():
+    with open("shopping_list.txt", 'w') as my_file:
+        my_file.write(str(dictionary_of_lists))
+
+def shopping_list_read():
+    with open("shopping_list.txt") as my_file:
+        dictionary_of_lists = eval(my_file.read())
+        return dictionary_of_lists
+
+
+
+
 
 
 if __name__ == '__main__':
